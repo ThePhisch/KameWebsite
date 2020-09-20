@@ -1,0 +1,19 @@
+/* Anton Schwarz */
+
+#gameDiv {
+        margin: auto;
+        width: 1000px; /* TODO once game window is resizeable, change this */
+        height: 600px;
+}
+
+#startDiv {
+        display: flex;
+}
+
+.splits {
+        width: 50%
+}
+
+.rightStart {
+      text-align: right;  
+}
