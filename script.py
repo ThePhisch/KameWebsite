@@ -1,5 +1,8 @@
 from bottle import route, run, template, request
 import bottle as b
+import api
+
+a = api.Connector()
 
 @route("/")
 def index():
@@ -14,6 +17,16 @@ def index():
 		else:
 			currentLang = 'de'
 	return template('index', currentLang=currentLang)
+
+@route('/xapi')
+def xapi():
+	if b.request.GET.apiName.strip() != "":
+		name = b.request.GET.apiName.strip()
+		return a.getProgress(name)
+	else:
+		return 'APIc Fail'
+
+
 
 @route('/static/<filename>')
 def server_static(filename):
