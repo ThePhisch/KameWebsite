@@ -34,6 +34,7 @@
 			<ol>
 				<li>16.09.2020 0.3.1</li>
 				<li>17.09.2020 0.3.1-webpatch1; kleine Änderungen, die auf erste Kommentare/Kritiken eingehen</li>
+				<li>20.09.2020 Updated Server to 0.1</li>
 			</ol>
 		</div>
 		<div id="impressumDiv">

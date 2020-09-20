@@ -3,8 +3,7 @@ import bottle as b
 
 @route("/")
 def index():
-	# return template('form')
-	# return request.query.b
+	# return template('transtest')
 	return template('index')
 
 @route('/static/<filename>')
