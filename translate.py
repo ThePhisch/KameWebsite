@@ -27,6 +27,12 @@ class Translator():
 		except KeyError:
 			return str(ID)
 
-	def setCurrentLang(self, ID):
-		self.currentLang = self.dic[str(ID)]
+	def g(self, ID):
+		return self.getString(ID)
+
+	def setLang(self, ID):
+		try:
+			self.currentLang = self.dic[str(ID)]
+		except KeyError:
+			pass
 

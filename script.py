@@ -3,8 +3,17 @@ import bottle as b
 
 @route("/")
 def index():
-	# return template('transtest')
-	return template('index')
+	if b.request.GET.currentLang.strip() != "":
+		currentLang = str(b.request.GET.currentLang.strip())
+		b.response.set_cookie('currentLang', currentLang)
+	elif b.request.get_cookie('currentLang') != "":
+		currentLang = b.request.get_cookie('currentLang')
+	else:
+		if b.request.headers.get('Accept-Language')[:2] == 'en':
+			currentLang = 'en'
+		else:
+			currentLang = 'de'
+	return template('index', currentLang=currentLang)
 
 @route('/static/<filename>')
 def server_static(filename):
