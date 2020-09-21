@@ -1,7 +1,7 @@
 <%
 import translate
 t = translate.Translator()
-t.setLang(currentLang)
+t.setLang(p.currentLang)
 %>
 
 <html>
@@ -18,18 +18,32 @@ t.setLang(currentLang)
 			({{t.g('SETS_COOKIE')}})
 			</div>
 			<div class="splits rightStart">
-			<h4>{{t.g('LOGIN')}} ({{t.g('SETS_COOKIE')}}) ({{t.g('CURR_DEACTIVATED')}})</h4>
+			%if p.cookieTimeout:
+			<h4>Cookie Timeout</h4>
+
+			%elif p.uName == "":
+				%if p.loginFail:
+				<h4>Login Failed</h4>
+				%else:
+				<h4>{{t.g('LOGIN')}} ({{t.g('SETS_COOKIE')}}) ({{t.g('CURR_DEACTIVATED')}})</h4>
+				%end
 			<form action="/" method="post">
 				{{t.g('USERNAME')}}: <input name="username" type="text" />
 				{{t.g('PASSWORD')}}: <input name="password" type="password" />
 				<input value="{{t.g('LOGIN')}}" type="submit" />
 			</form>
+			%else: # LOGGED ON
+			<h4>{{p.uName}}</h4>
+			<form action="/" method="GET">
+				<button name="logout" type="submit" value="1">Logout</button>
+			</form>
+			%end
 			</div>
 		</div>
 
 		<hr>
 		<div id="gameDiv">
-			<iframe src="/game/KameWeb_s.html" width="1000" height="600"></iframe>
+			<iframe src="/game/KameWeb_s.htmlx" width="1000" height="600"></iframe>
 		</div>
 		<hr>
 		<div id="updatesDiv">

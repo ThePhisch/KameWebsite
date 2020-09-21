@@ -1,4 +1,5 @@
 import pymysql
+import hashlib
 
 class Connector():
 	"""
@@ -42,11 +43,28 @@ class Connector():
 		TODO hash passwords!!
 		"""
 		self.c.execute("SELECT pass FROM users WHERE name={}".format('"' + name + '"'))
-		try:
-			out = self.c.fetchone()[0]
-			return passwd == out
-		except TypeError:
-			return 'TypeError Caught: User does not exist. APIc Fail'
+		out = self.c.fetchone()
+		if out:
+			return hashlib.sha224(str.encode(passwd)).hexdigest() == out[0]
+		else:
+			return False
+		
 
 	def test(self):
 		return 'oof'
+
+class Package():
+	"""
+	Class to send information to templates
+	Has built-in default values
+	"""
+	def __init__(self, **kwargs):
+		self.setDefault()
+		self.__dict__.update(kwargs)
+
+	def setDefault(self):
+		self.loginFail = False
+		self.uName = ""
+		self.currentLang = 'de'
+		self.cookieTimeout = False
+		self.loggedOn = False
