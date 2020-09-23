@@ -6,14 +6,20 @@
         height: 600px;
 }
 
-#startDiv {
+.startDiv {
         display: flex;
 }
 
-.splits {
-        width: 50%
+.buttonFloat {
+        float: right;
+        /* display: flex; */
+}
+
+.splitsleft {
+        width: 40%;
 }
 
 .rightStart {
-      text-align: right;  
+      text-align: right;
+      width: 60%;
 }

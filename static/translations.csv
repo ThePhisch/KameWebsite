@@ -7,3 +7,16 @@ LOGIN,Login,Login
 LOGIN_TITLE,Login,Login
 SETS_COOKIE,setzt einen Cookie,sets a cookie
 CURR_DEACTIVATED,derzeit deaktiviert,currently deactivated
+LOGGED_IN_AS,Eingeloggt als,Logged in as
+LOG_OUT,Ausloggen,Log Out
+PASS_CHANGED,Passwort erfolgreich geändert,Password changed successfully
+PASS_CHANGE_ERROR,Fehler beim Ändern des Passworts,Error in changing the password
+PASS_CHANGE_MISMATCH,Die Passwörter stimmen nicht überein,The passwords mismatch
+PASS_CHANGE,Passwort ändern,Change password
+PASS_OLD,Altes Passwort,Old password
+PASS_NEW,Neues Passwort,New password
+PASS_NEW_REPEAT,Neues Passwort wiederholen,Repeat new password
+PASS_CHANGE_SUBMIT,Abgabe,Submit
+LOGIN_FAILED,Login fehlgeschlagen,Login failed
+COOKIE_TIMEOUT,Cookie Abgelaufen,Cookie Timeout
+TEMPORARY_WEBSITE,Vorläufige Webseite,Temporary Website
