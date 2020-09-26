@@ -9,7 +9,7 @@ class Translator():
 		self.dic = {}
 		self.currentLang = currentLang
 
-		with open(csvLocation) as file:
+		with open(csvLocation, encoding='utf-8') as file:
 			reader = list(csv.reader(file))
 			for i in range(len(reader[0][1:])): # skip first entry
 				self.langs.append({})

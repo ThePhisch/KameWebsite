@@ -28,7 +28,7 @@ class Connector(SQL_Basis):
 		"""
 		Fetch progress from user
 		"""
-		self.c.execute("SELECT SQL_NO_CACHE prog FROM users WHERE name={}".format('"' + name + '"'))
+		self.c.execute("SELECT SQL_NO_CACHE prog FROM users WHERE name=%s", (name,))
 		try:
 			return self.c.fetchone()[0]
 		except TypeError:
@@ -43,9 +43,8 @@ class Connector(SQL_Basis):
 	def checkCredentials(self, name, passwd):
 		"""
 		Check User login information against database
-		TODO hash passwords!!
 		"""
-		self.c.execute("SELECT pass FROM users WHERE name={}".format('"' + name + '"'))
+		self.c.execute("SELECT pass FROM users WHERE name=%s", (name,))
 		out = self.c.fetchone()
 		if out:
 			return hashlib.sha224(str.encode(passwd)).hexdigest() == out[0]
@@ -94,7 +93,7 @@ class Logger(SQL_Basis):
 		return hashedCookieValue
 
 	def checkExists(self, cookieValueToProve):
-		self.c.execute('SELECT cookieName, cookieTime FROM sessions WHERE cookieValue="%s"' % cookieValueToProve) 
+		self.c.execute('SELECT cookieName, cookieTime FROM sessions WHERE cookieValue=%s', (cookieValueToProve,)) 
 		return self.c.fetchone() # returns tuple (uName : String, time : int) or None
 
 	def removeEntry(self, cookieValueToDelete):
@@ -109,14 +108,13 @@ class Usermethods(SQL_Basis):
 
 	def changePassword(self, uName, newPassword):
 		vals = (hashlib.sha224(str.encode(newPassword)).hexdigest(), uName)
-		self.c.execute('UPDATE users SET pass="%s" WHERE name="%s"' % vals)
+		self.c.execute('UPDATE users SET pass=%s WHERE name=%s', vals)
 
 	def checkCredentials(self, name, passwd):
 		"""
 		Check User login information against database
-		TODO hash passwords!!
 		"""
-		self.c.execute("SELECT pass FROM users WHERE name={}".format('"' + name + '"'))
+		self.c.execute("SELECT pass FROM users WHERE name=%s", (name,))
 		out = self.c.fetchone()
 		if out:
 			return hashlib.sha224(str.encode(passwd)).hexdigest() == out[0]

@@ -2,10 +2,14 @@ from bottle import route, run, template, request
 import bottle as b
 import api
 
+# import logging
+# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.debug('This is a log message.')
 
-a = api.Connector()
-l = api.Logger()
-u = api.Usermethods()
+# a = api.Connector()
+# l = api.Logger()
+# u = api.Usermethods()
+# p = api.Package()
 
 def setLanguage(req):
 	"""
@@ -27,9 +31,23 @@ def setLanguage(req):
 			currentLang = 'de'
 	return currentLang
 
+def cookieUserName(req):
+	l = api.Logger()
+	logOnCookie = req.get_cookie('logged_on', secret=l.skey)
+	if logOnCookie:
+		logTuple = l.checkExists(logOnCookie)
+		if logTuple:
+			return logTuple[0]
+		else:
+			return ""
+	else:
+		return ""
 
 @b.route("/", method=['GET', 'POST'])
 def index():
+	a = api.Connector()
+	l = api.Logger()
+	u = api.Usermethods()
 	p = api.Package(currentLang=setLanguage(b.request))
 	logOnCookie = b.request.get_cookie('logged_on', secret=l.skey)
 	if logOnCookie:
@@ -69,7 +87,7 @@ def index():
 			return template('index', p=p)
 	elif b.request.forms.get('username') and b.request.forms.get('password'):
 		# An attempt at logging on has been made
-		if a.checkCredentials(b.request.forms.get('username'), b.request.forms.get('password')):
+		if u.checkCredentials(b.request.forms.get('username'), b.request.forms.get('password')):
 			# Successfully logged on
 			p.uName = b.request.forms.username
 			p.loggedOn = True
@@ -86,6 +104,7 @@ def index():
 
 @route('/xapi', method=['GET', 'POST'])
 def xapi():
+	a = api.Connector()
 	apiName = b.request.GET.apiName.strip()
 	apiInput = b.request.GET.apiInput.strip()
 	apiProg = b.request.POST.apiProg
@@ -105,8 +124,7 @@ def xapi():
 
 @route('/jstest')
 def jstest():
-	return template('./game/k.tpl', col=b.request.query.get('col'))
-
+	return template('./game/k.tpl', uName=b.request.query.get('col'))
 
 @route('/static/<filename>')
 def server_static(filename):
@@ -114,7 +132,12 @@ def server_static(filename):
 
 @route('/game/<filename>')
 def server_game(filename):
-	return b.static_file(filename, root='./game')
+	if 'tpl' in filename:
+		# logging.debug(cookieUserName(b.request))
+		b.time.sleep(0.1)
+		return template('./game/KameWeb0-3-2.tpl', uName=cookieUserName(b.request))
+	else:
+		return b.static_file(filename, root='./game')
 
 if __name__ == '__main__':
 	run(host='localhost', reloader=True, debug=True)

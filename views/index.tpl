@@ -68,7 +68,8 @@ t.setLang(p.currentLang)
 
 		<hr>
 		<div id="gameDiv">
-			<iframe src="/game/KameWeb_s.htmlx" width="1000" height="600"></iframe>
+			<!-- <iframe src="/game/KameWeb_s.htmlx" width="1000" height="600"></iframe> -->
+			<iframe src="/game/KameWeb0-3-2.tpl" width="1000" height="600"></iframe>
 		</div>
 		<hr>
 		<div id="updatesDiv">
@@ -78,13 +79,20 @@ t.setLang(p.currentLang)
 				<li>17.09.2020 0.3.1-webpatch1; kleine Änderungen, die auf erste Kommentare/Kritiken eingehen</li>
 				<li>20.09.2020 Updated Server to 0.1</li>
 				<li>20.09.2020 Updated Server to 0.1.1</li>
+				<li>24.09.2020 Updated Server to 0.1.2</li>
+				<li>24.09.2020 0.3.2</li>
+				<li>25.09.2020 Fixed Server Issue with SQL (thanks, Kumiko)</li>
+				<li>26.09.2020 Fixed Server Issue with SQL</li>
 			</ol>
 		</div>
 		<div id="impressumDiv">
 			<h4>Impressum/Kontakt</h4>
 			Ohne Impressum, da private Webseite. Ich schalte keine Werbung, verkaufe nix und biete keine
 			journalistischen Inhalte an. Standardmäßig werden keine Cookies gesetzt. Überall dort, wo Cookies
-			gesetzt werden, wird darauf hingewiesen. Kontaktaufnahme erstmal über urinalgame (at) gmail (dot) com.
+			gesetzt werden, wird darauf hingewiesen. Bei eingeloggten Nutzern wird der Spielfortschritt
+			gespeichert, ansonsten werden keine personenbezogenen Daten erhoben.
+			Kontaktaufnahme erstmal über urinalgame (at) gmail (dot) com, dort können auch neue Nutzerkonten
+			angefordert werden.
 		</div>
 	</body>
 </html>
