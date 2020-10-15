@@ -1,6 +1,7 @@
 import pymysql
 import hashlib
 import time
+import os
 
 class SQL_Basis():
 	"""
@@ -8,7 +9,7 @@ class SQL_Basis():
 	Provides helper functions and especially an abstraction layer so database does not
 	have to be opened to remote access.
 	"""
-	def __init__(self, db='ulrich_offline', user='anton', passwd='anton',host='localhost'):
+	def __init__(self, db=os.environ.get('DB_NAME'), user=os.environ.get('DB_USER'), passwd=os.environ.get('DB_PASS'),host='localhost'):
 		"""
 		Initialise Connection to database
 		"""
