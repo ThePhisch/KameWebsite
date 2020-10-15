@@ -1,25 +1,48 @@
 /* Anton Schwarz */
 
 #gameDiv {
-        margin: auto;
-        width: 1000px; /* TODO once game window is resizeable, change this */
-        height: 600px;
+  margin: auto;
+  width: 1000px; /* TODO once game window is resizeable, change this */
+  height: 600px;
 }
 
 .startDiv {
-        display: flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*background-color: lightpink;*/
+  padding: 0.2em;
+  justify-content: space-between;
 }
 
-.buttonFloat {
-        float: right;
-        /* display: flex; */
+.startDiv > div {
+  /* background-color: lightcoral; */
+  display: flex;
+  flex-direction: column;
 }
 
-.splitsleft {
-        width: 40%;
+.right {
+  text-align: right;
+  justify-content: flex-end;
 }
 
-.rightStart {
-      text-align: right;
-      width: 60%;
+.belowtitle {
+  /* background-color: lightgreen; */
+}
+
+.b {
+  font-weight: bold;
+}
+
+form {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.uibuttons {
+  display: flex;
+}
+
+#formForPasswordChange {
+  display: none;
 }

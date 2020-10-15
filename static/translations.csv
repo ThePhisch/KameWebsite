@@ -20,3 +20,4 @@ PASS_CHANGE_SUBMIT,Abgabe,Submit
 LOGIN_FAILED,Login fehlgeschlagen,Login failed
 COOKIE_TIMEOUT,Cookie Abgelaufen,Cookie Timeout
 TEMPORARY_WEBSITE,Vorläufige Webseite,Temporary Website
+ACTIVATED_NOTPUBLIC,Aktiviert aber nicht öffentlich,Activated but not public
